@@ -42,7 +42,10 @@ namespace Runner.Player.Previewer
         // Start is called before the first frame update
         void Start()
         {
-        
+            _northIndicator.color = _predictiveEmptyColor;
+            _eastIndicator.color = _predictiveEmptyColor;
+            _southIndicator.color = _predictiveEmptyColor;
+            _westIndicator.color = _predictiveEmptyColor;
         }
 
         // Update is called once per frame

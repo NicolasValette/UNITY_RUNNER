@@ -20,6 +20,14 @@ namespace Runner
             Collectible
         }
 
+        [Header("Object generated")]
+        [Tooltip("Select object to generate along the spline")]
+        [SerializeField]
+        private bool _door;
+        [SerializeField]
+        private bool _collectible;
+        [SerializeField]
+        private bool _wall;
         [SerializeField]
         private List<Transform> _spawnPositions;
 
@@ -38,10 +46,13 @@ namespace Runner
         private GameObject _wallPrefab;
 
         private List<GameObject> _objects;
+        private List<MapObjectType> _selectedObject;
+        
 
         // Start is called before the first frame update
         void Start()
         {
+            BuildSelectedObjectList();
             Generate();
         }
 
@@ -51,6 +62,16 @@ namespace Runner
         
         }
 
+        private void BuildSelectedObjectList()
+        {
+            _selectedObject = new List<MapObjectType>();
+            if (_door)
+                _selectedObject.Add(MapObjectType.Door);
+            if (_wall)
+                _selectedObject.Add(MapObjectType.Wall);
+            if (_collectible)
+                _selectedObject.Add(MapObjectType.Collectible);
+        }
         public void SetPositionList (in GameObject[] positionTab)
         {
             foreach(GameObject obj in positionTab)
@@ -97,12 +118,17 @@ namespace Runner
             //}
             return null;
         }
+        private MapObjectType ChooseMapObjectType()
+        {
+            int indice = Random.Range(0, _selectedObject.Count);
+            return _selectedObject[indice];
+        }
         public void Generate(bool isFirstLap = false)
         {
             _objects = new List<GameObject>();
             for (int i=isFirstLap?1:0;i<_spawnPositions.Count;i++)
             {
-                _objects.Add(InstantiateMapObject((MapObjectType)Random.Range(0, 3), _spawnPositions[i]));
+                _objects.Add(InstantiateMapObject(ChooseMapObjectType(), _spawnPositions[i]));
             }
         }
 

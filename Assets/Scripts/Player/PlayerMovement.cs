@@ -39,7 +39,6 @@ namespace Runner.Player
         // Update is called once per frame
         void Update()
         {
-           
         }
 
         //public void Left()
@@ -56,6 +55,13 @@ namespace Runner.Player
         public void Jump()
         {
             _playerRigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+        }
+        public void SpeedUp()
+        {
+            Transform currentPos = transform;
+            _splineAnimate.MaxSpeed += 10;
+            transform.position = currentPos.position;
+            transform.rotation = currentPos.rotation;
         }
 
         public void Rotate(float rotationAmount)
