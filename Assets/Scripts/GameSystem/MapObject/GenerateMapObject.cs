@@ -80,9 +80,10 @@ namespace Runner
             }
         }
 
-        private GameObject InstantiateMapObject(MapObjectType type, Transform spawnTransform)
+        private GameObject InstantiateMapObject(MapObjectType type, Transform spawnTransform, bool verbose = false)
         {
-            Debug.Log("Instantiante " + type.ToString() + " object");
+            if (verbose)
+                Debug.Log("Instantiante " + type.ToString() + " object");
             if (type == MapObjectType.Collectible || type == MapObjectType.Door)
             {
                 RoadPosition roadPos = (RoadPosition)Random.Range(0, 5);

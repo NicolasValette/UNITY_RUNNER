@@ -15,13 +15,13 @@ namespace Runner.UI
         void Start()
         {
             _gateNumber = 0;
-            _gateNumberTxt.text = _gateNumber.ToString();
+            _gateNumberTxt.text = $"Score : {_gateNumber}";
         }
 
         public void CrossGate()
         {
             _gateNumber ++;
-            _gateNumberTxt.text = _gateNumber.ToString();
+            _gateNumberTxt.text = $"Score : {_gateNumber}";
         }
     }
 }

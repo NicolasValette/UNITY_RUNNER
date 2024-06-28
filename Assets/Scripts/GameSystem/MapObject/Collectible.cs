@@ -26,9 +26,9 @@ namespace Runner.MapObject
         // Update is called once per frame
         void Update()
         {
-            //Vector3 euleurAngles = new Vector3(0f, 1f, 0f) * _speed * Time.deltaTime;
-         
-            //transform.rotation *= Quaternion.Euler(euleurAngles);
+            Vector3 euleurAngles = new Vector3(0f, 1f, 0f) * _speed * Time.deltaTime;
+
+            transform.rotation *= Quaternion.Euler(euleurAngles);
         }
 
         private void OnTriggerEnter(Collider other)

@@ -14,13 +14,13 @@ namespace Runner.UI
         // Start is called before the first frame update
         void Start()
         {
-            _lapText.text = $"Lap : {_actualLap.ToString()}";
+            _lapText.text = $"Door : {_actualLap.ToString()}";
         }
 
         public void UpdateLap()
         {
             _actualLap++;
-            _lapText.text = $"Lap : {_actualLap.ToString()}";
+            _lapText.text = $"Door : {_actualLap.ToString()}";
         }
     }
 }

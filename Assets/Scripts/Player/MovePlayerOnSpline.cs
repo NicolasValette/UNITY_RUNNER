@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Splines;
 
 namespace Runner
@@ -25,6 +26,8 @@ namespace Runner
         private Transform _playerRotateTransform;
         [SerializeField]
         private Rigidbody _playerRigidbody;
+        [SerializeField]
+        private UnityEvent<float> _OnSpeedUp;
 
         private float _currentDistance = 0f;
         private bool _isRunning;
@@ -118,11 +121,16 @@ namespace Runner
         {
             _isRunning = true;
         }
+        public void Stop()
+        {
+            _isRunning = false;
+        }
         public void SpeedUp()
         {
             Debug.Log("Speed up !");
             _moveSpeed += _moveSpeedIncrement;
             _rotationSpeed += _rotationSpeedIncrement;
+            _OnSpeedUp.Invoke(_moveSpeed);
             Debug.Log("Move speed : " + _moveSpeed);
         }
     }

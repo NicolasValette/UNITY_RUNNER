@@ -32,7 +32,8 @@ namespace Runner
         {
             if (collision.gameObject.CompareTag("Wall"))
             {
-                _rootPlayerGO.GetComponent<SplineAnimate>().Pause();
+                //_rootPlayerGO.GetComponent<SplineAnimate>().Pause();
+                _rootPlayerGO.GetComponent<MovePlayerOnSpline>().Stop();
                 _deathParticleSystem.Play();
                 _playerRenderer.enabled = false;
                 OnPlayerDeath.Invoke();

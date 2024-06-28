@@ -11,7 +11,11 @@ namespace Runner.MapObject
         [SerializeField]
         private UnityEvent OnNewLap;
         [SerializeField]
+        private UnityEvent OnNewDoor;
+        [SerializeField]
         private GameObject _doorObj;
+        [SerializeField]
+        private bool _isFirstDoor;
 
         private bool _isRaceStarting = false;
         // Start is called before the first frame update
@@ -28,13 +32,22 @@ namespace Runner.MapObject
         }
         private void OnTriggerEnter(Collider other)
         {
+
             if (_isRaceStarting)
             {
                 if (other.CompareTag("Player"))
                 {
-                    OnNewLap.Invoke();
+                    if (_isFirstDoor)
+                    {
+                        OnNewLap.Invoke();
+                    }
+                    else
+                    {
+                        OnNewDoor.Invoke();
+                    }
                 }
             }
+
         }
         public IEnumerator StartRaceInOneSecond()
         {
